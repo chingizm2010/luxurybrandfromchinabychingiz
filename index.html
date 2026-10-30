@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAISON | Luxury Designer Collection</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            100: '#FAF4E1',
+                            300: '#E2C983',
+                            500: '#D4AF37',
+                            600: '#B89320',
+                        },
+                        dark: {
+                            900: '#0F0F0F',
+                            800: '#181818',
+                            700: '#242424',
+                            600: '#333333'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Cinzel', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar for refined aesthetic */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f0f0f;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d4af37;
+        }
+        .backdrop-blur-md {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        /* Custom transitions */
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-6px);
+        }
+    </style>
+</head>
+<body class="bg-dark-900 text-gray-100 font-sans antialiased min-h-screen flex flex-col selection:bg-gold-500 selection:text-black">
+
+    <!-- TOP ANNOUNCEMENT BAR -->
+    <div class="bg-gradient-to-r from-gold-600 via-gold-500 to-gold-600 text-black text-xs font-semibold py-2 text-center tracking-widest uppercase">
+        <span class="inline-block animate-pulse mr-2">✦</span> Complimentary Worldwide Express Shipping on Orders Over $1,000 <span class="inline-block animate-pulse ml-2">✦</span>
+    </div>
+
+    <!-- MAIN HEADER / NAVIGATION -->
+    <header class="sticky top-0 z-40 bg-dark-900/90 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="lg:hidden text-gray-300 hover:text-white focus:outline-none p-2" aria-label="Toggle Navigation">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+
+                <!-- Brand Logo -->
+                <a href="#" class="flex flex-col items-center group">
+                    <span class="font-serif text-2xl sm:text-3xl font-bold tracking-[0.25em] text-white group-hover:text-gold-500 transition-colors">MAISON</span>
+                    <span class="text-[9px] tracking-[0.4em] text-gold-500 uppercase -mt-1 font-sans">Haute Couture</span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex items-center space-x-8 text-xs font-medium tracking-widest uppercase text-gray-300">
+                    <a href="#collections" class="hover:text-gold-500 transition-colors">Collections</a>
+                    <a href="#brands" class="hover:text-gold-500 transition-colors">Maisons</a>
+                    <a href="#featured" class="hover:text-gold-500 transition-colors">New Arrivals</a>
+                    <a href="#about" class="hover:text-gold-500 transition-colors">About</a>
+                </nav>
+
+                <!-- Right Action Icons -->
+                <div class="flex items-center space-x-5">
+                    <!-- Search Bar Toggle -->
+                    <div class="relative hidden sm:block">
+                        <input type="text" id="search-input" placeholder="Search Gucci, Rolex, Chanel..." 
+                               class="bg-dark-800 text-xs text-white rounded-full py-2 pl-9 pr-4 w-48 sm:w-60 focus:outline-none focus:ring-1 focus:ring-gold-500 border border-white/10 placeholder-gray-500">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-gray-400 text-xs"></i>
+                    </div>
+
+                    <!-- Wishlist Icon (Decorative) -->
+                    <button class="text-gray-300 hover:text-gold-500 transition-colors relative hidden sm:block" title="Wishlist">
+                        <i class="fa-regular fa-heart text-lg"></i>
+                    </button>
+
+                    <!-- Cart Trigger Button -->
+                    <button id="cart-btn" class="text-gray-300 hover:text-gold-500 transition-colors relative flex items-center p-2" title="Shopping Cart">
+                        <i class="fa-solid fa-bag-shopping text-xl"></i>
+                        <span id="cart-badge" class="absolute -top-1 -right-1 bg-gold-500 text-black text-[10px] font-bold rounded-full h-5 w-5 flex items-center justify-center opacity-0 transition-opacity">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Search Input (Visible only on smaller screens) -->
+        <div class="sm:hidden px-4 pb-3">
+            <div class="relative">
+                <input type="text" id="mobile-search-input" placeholder="Search luxury products..." 
+                       class="w-full bg-dark-800 text-xs text-white rounded-full py-2 pl-9 pr-4 focus:outline-none focus:ring-1 focus:ring-gold-500 border border-white/10 placeholder-gray-500">
+                <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-gray-400 text-xs"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative h-[80vh] flex items-center justify-center overflow-hidden">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2070&auto=format&fit=crop" 
+                 alt="Luxury Fashion" 
+                 class="w-full h-full object-cover object-center scale-105 filter brightness-50">
+            <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/40 to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 text-center max-w-4xl px-4 mx-auto">
+            <span class="text-gold-500 text-xs font-semibold tracking-[0.3em] uppercase mb-3 block">Autumn / Winter 2026</span>
+            <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl font-bold tracking-wider text-white mb-6 uppercase">
+                The Pinnacle of <br><span class="italic font-normal text-gold-300">Luxury</span>
+            </h1>
+            <p class="text-gray-300 text-sm sm:text-base font-light max-w-xl mx-auto mb-8 tracking-wide">
+                Explore authenticated iconic fashion, high-grade timepieces, and exclusive couture curated directly from the world's most prestigious luxury houses.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#collections" class="w-full sm:w-auto bg-gold-500 hover:bg-gold-600 text-black font-semibold text-xs tracking-widest uppercase px-8 py-4 rounded-sm transition-all duration-300 shadow-lg shadow-gold-500/20">
+                    Explore Catalogue
+                </a>
+                <a href="#brands" class="w-full sm:w-auto border border-white/30 hover:border-gold-500 hover:text-gold-500 text-white font-semibold text-xs tracking-widest uppercase px-8 py-4 rounded-sm transition-all duration-300">
+                    Featured Brands
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- BRAND LOGOS CAROUSEL / GRID -->
+    <section id="brands" class="py-12 border-y border-white/10 bg-dark-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-[11px] font-semibold tracking-[0.3em] text-gray-500 uppercase mb-8">Direct Authorized Luxury Houses</p>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center opacity-70">
+                <div class="text-center font-serif text-xl sm:text-2xl tracking-[0.2em] font-bold text-gray-400 hover:text-gold-500 transition-colors cursor-pointer">CHANEL</div>
+                <div class="text-center font-serif text-xl sm:text-2xl tracking-[0.2em] font-bold text-gray-400 hover:text-gold-500 transition-colors cursor-pointer">GUCCI</div>
+                <div class="text-center font-serif text-xl sm:text-2xl tracking-[0.2em] font-bold text-gray-400 hover:text-gold-500 transition-colors cursor-pointer">ROLEX</div>
+                <div class="text-center font-serif text-xl sm:text-2xl tracking-[0.2em] font-bold text-gray-400 hover:text-gold-500 transition-colors cursor-pointer">HERMÈS</div>
+                <div class="text-center font-serif text-xl sm:text-2xl tracking-[0.2em] font-bold text-gray-400 hover:text-gold-500 transition-colors cursor-pointer">PRADA</div>
+                <div class="text-center font-serif text-xl sm:text-2xl tracking-[0.2em] font-bold text-gray-400 hover:text-gold-500 transition-colors cursor-pointer">DIOR</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN PRODUCT CATALOGUE & FILTERING -->
+    <section id="collections" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-grow">
+        
+        <!-- Section Header -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 border-b border-white/10 pb-6">
+            <div>
+                <span class="text-gold-500 text-xs font-semibold tracking-[0.25em] uppercase">Curated Catalog</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white tracking-wide mt-1">Exclusive Offerings</h2>
+            </div>
+            
+            <!-- Filters & Sorting Controls -->
+            <div class="mt-6 md:mt-0 flex flex-wrap items-center gap-3">
+                <!-- Brand Filter Buttons -->
+                <div id="brand-filters" class="flex flex-wrap gap-2">
+                    <button data-brand="all" class="filter-btn active-filter px-4 py-2 rounded-full text-xs font-medium border border-gold-500 bg-gold-500 text-black transition-all">
+                        All Brands
+                    </button>
+                    <button data-brand="Chanel" class="filter-btn px-4 py-2 rounded-full text-xs font-medium border border-white/10 text-gray-300 hover:border-gold-500 transition-all">
+                        Chanel
+                    </button>
+                    <button data-brand="Gucci" class="filter-btn px-4 py-2 rounded-full text-xs font-medium border border-white/10 text-gray-300 hover:border-gold-500 transition-all">
+                        Gucci
+                    </button>
+                    <button data-brand="Rolex" class="filter-btn px-4 py-2 rounded-full text-xs font-medium border border-white/10 text-gray-300 hover:border-gold-500 transition-all">
+                        Rolex
+                    </button>
+                    <button data-brand="Hermès" class="filter-btn px-4 py-2 rounded-full text-xs font-medium border border-white/10 text-gray-300 hover:border-gold-500 transition-all">
+                        Hermès
+                    </button>
+                </div>
+
+                <!-- Sort Dropdown -->
+                <select id="sort-select" class="bg-dark-800 text-xs text-gray-300 border border-white/10 rounded-full px-4 py-2 focus:outline-none focus:ring-1 focus:ring-gold-500">
+                    <option value="featured">Sort: Featured</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="name">Name: A-Z</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Product Grid Container -->
+        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            <!-- JS will dynamically populate product cards here -->
+        </div>
+
+        <!-- Empty Search State -->
+        <div id="empty-state" class="hidden text-center py-16">
+            <i class="fa-solid fa-gem text-4xl text-gray-600 mb-4"></i>
+            <h3 class="text-lg font-serif text-white">No luxury pieces match your selection</h3>
+            <p class="text-xs text-gray-400 mt-1">Try adjusting your brand filter or search term.</p>
+        </div>
+    </section>
+
+    <!-- TRUST & AUTHENTICITY SECTION -->
+    <section class="bg-dark-800 py-16 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="p-6 rounded-lg bg-dark-900/40 border border-white/5">
+                    <i class="fa-solid fa-shield-halved text-2xl text-gold-500 mb-4"></i>
+                    <h4 class="font-serif text-base font-semibold text-white tracking-wide">100% Guaranteed Authenticity</h4>
+                    <p class="text-xs text-gray-400 mt-2 leading-relaxed">Every piece passes rigorous multi-point physical verification by our seasoned horologists and luxury brand specialists.</p>
+                </div>
+                <div class="p-6 rounded-lg bg-dark-900/40 border border-white/5">
+                    <i class="fa-solid fa-truck-fast text-2xl text-gold-500 mb-4"></i>
+                    <h4 class="font-serif text-base font-semibold text-white tracking-wide">Armored Express Delivery</h4>
+                    <p class="text-xs text-gray-400 mt-2 leading-relaxed">Discreet, fully insured global transportation with dedicated signature-verified security clearance upon delivery.</p>
+                </div>
+                <div class="p-6 rounded-lg bg-dark-900/40 border border-white/5">
+                    <i class="fa-solid fa-concierge-bell text-2xl text-gold-500 mb-4"></i>
+                    <h4 class="font-serif text-base font-semibold text-white tracking-wide">Private Concierge Service</h4>
+                    <p class="text-xs text-gray-400 mt-2 leading-relaxed">Access 24/7 bespoke advisory for personal styling, rare item sourcing, and VIP luxury procurement.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black text-gray-400 border-t border-white/10 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+                
+                <!-- Col 1: Brand Info -->
+                <div class="space-y-4">
+                    <span class="font-serif text-2xl font-bold tracking-[0.25em] text-white">MAISON</span>
+                    <p class="text-gray-500 leading-relaxed text-xs">
+                        The world’s premier digital destination for authenticated luxury goods, rare timepieces, and high couture.
+                    </p>
+                    <div class="flex space-x-4 text-gray-400 pt-2">
+                        <a href="#" class="hover:text-gold-500 transition-colors"><i class="fa-brands fa-instagram text-lg"></i></a>
+                        <a href="#" class="hover:text-gold-500 transition-colors"><i class="fa-brands fa-twitter text-lg"></i></a>
+                        <a href="#" class="hover:text-gold-500 transition-colors"><i class="fa-brands fa-pinterest text-lg"></i></a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Houses -->
+                <div>
+                    <h5 class="font-serif text-white uppercase text-xs tracking-widest font-semibold mb-4">Maisons</h5>
+                    <ul class="space-y-2.5">
+                        <li><a href="#" class="hover:text-gold-500 transition-colors">Chanel Haute Couture</a></li>
+                        <li><a href="#" class="hover:text-gold-500 transition-colors">Gucci Leather Works</a></li>
+                        <li><a href="#" class="hover:text-gold-500 transition-colors">Rolex Geneva</a></li>
+                        <li><a href="#" class="hover:text-gold-500 transition-colors">Hermès Paris</a></li>
+                        <li><a href="#" class="hover:text-gold-500 transition-colors">Prada Group</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Client Services -->
+                <div>
+                    <h5 class="font-serif text-white uppercase text-xs tracking-widest font-semibold mb-4">Client Care</h5>
+                    <ul class="space-y-2.5">
+                        <li><a href="#" class="hover:text-gold-500 transition-colors">Bespoke Concierge</a></li>
+                        <li><a href="#" class="hover:text-gold-500 transition-colors">Authentication Process</a></li>
+                        <li><a href="#" class="hover:text-gold-500 transition-colors">Global Insured Shipping</a></li>
+                        <li><a href="#" class="hover:text-gold-500 transition-colors">Returns & Guarantee</a></li>
+                        <li><a href="#" class="hover:text-gold-500 transition-colors">Private Appointments</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Newsletter -->
+                <div>
+                    <h5 class="font-serif text-white uppercase text-xs tracking-widest font-semibold mb-4">Private Gazette</h5>
+                    <p class="text-gray-500 mb-4 leading-relaxed">Subscribe to receive private invitations to ultra-exclusive drops and unlisted items.</p>
+                    <form onsubmit="event.preventDefault(); showToast('Subscribed to private gazette.');" class="flex">
+                        <input type="email" placeholder="Enter your email" required class="bg-dark-800 text-white px-3 py-2 text-xs rounded-l border border-white/10 focus:outline-none focus:border-gold-500 w-full">
+                        <button type="submit" class="bg-gold-500 text-black px-4 py-2 font-semibold text-xs rounded-r hover:bg-gold-600 transition-colors">Join</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center text-gray-600">
+                <p>&copy; 2026 MAISON Luxury Group LLC. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 sm:mt-0">
+                    <a href="#" class="hover:text-gray-400">Privacy Policy</a>
+                    <a href="#" class="hover:text-gray-400">Terms of Service</a>
+                    <a href="#" class="hover:text-gray-400">Authenticity Guarantee</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- PRODUCT DETAIL MODAL -->
+    <div id="product-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md overflow-y-auto">
+        <div class="bg-dark-800 border border-white/10 rounded-lg max-w-3xl w-full overflow-hidden relative shadow-2xl animate-fade-in my-8">
+            <button id="close-modal" class="absolute top-4 right-4 text-gray-400 hover:text-white z-10 p-2 bg-dark-900/60 rounded-full w-8 h-8 flex items-center justify-center">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div id="modal-content" class="grid grid-cols-1 md:grid-cols-2">
+                <!-- JS Populates Modal Data -->
+            </div>
+        </div>
+    </div>
+
+    <!-- CART SIDEBAR OVERLAY -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 pointer-events-none">
+        <!-- Backdrop -->
+        <div id="cart-backdrop" class="absolute inset-0 bg-black/70 opacity-0 transition-opacity duration-300 pointer-events-auto hidden"></div>
+        
+        <!-- Drawer -->
+        <div id="cart-panel" class="absolute inset-y-0 right-0 max-w-full flex pl-10 transform translate-x-full transition-transform duration-300 pointer-events-auto">
+            <div class="w-screen max-w-md bg-dark-800 border-l border-white/10 flex flex-col justify-between">
+                
+                <!-- Drawer Header -->
+                <div class="p-6 border-b border-white/10 flex items-center justify-between">
+                    <div class="flex items-center space-x-2">
+                        <i class="fa-solid fa-bag-shopping text-gold-500"></i>
+                        <h3 class="font-serif text-lg font-bold text-white tracking-wide">Your Shopping Bag</h3>
+                    </div>
+                    <button id="close-cart" class="text-gray-400 hover:text-white p-2">
+                        <i class="fa-solid fa-xmark text-lg"></i>
+                    </button>
+                </div>
+
+                <!-- Cart Items List -->
+                <div id="cart-items" class="flex-grow p-6 overflow-y-auto space-y-4">
+                    <!-- Dynamic Cart Items -->
+                </div>
+
+                <!-- Drawer Footer / Summary -->
+                <div class="p-6 border-t border-white/10 bg-dark-900">
+                    <div class="space-y-2 mb-4 text-xs">
+                        <div class="flex justify-between text-gray-400">
+                            <span>Subtotal</span>
+                            <span id="cart-subtotal">$0.00</span>
+                        </div>
+                        <div class="flex justify-between text-gray-400">
+                            <span>Insured Express Shipping</span>
+                            <span class="text-gold-500 uppercase">Complimentary</span>
+                        </div>
+                        <div class="flex justify-between text-white font-semibold text-sm pt-2 border-t border-white/10">
+                            <span>Total</span>
+                            <span id="cart-total" class="text-gold-500 font-serif">$0.00</span>
+                        </div>
+                    </div>
+                    <button id="checkout-btn" class="w-full bg-gold-500 hover:bg-gold-600 text-black font-semibold text-xs tracking-widest uppercase py-4 rounded transition-colors flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-lock text-xs"></i>
+                        <span>Proceed to Secure Checkout</span>
+                    </button>
+                    <p class="text-[10px] text-gray-500 text-center mt-3">256-bit SSL Encryption | Guaranteed Authentic</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col space-y-2 pointer-events-none"></div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // LUXURY PRODUCTS DATABASE
+        const products = [
+            {
+                id: 1,
+                name: "Chanel Classic Flap Bag - Lambskin & Gold Metal",
+                brand: "Chanel",
+                category: "Bags",
+                price: 10200,
+                rating: 5.0,
+                image: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=1000&auto=format&fit=crop",
+                description: "The iconic Chanel Classic Handbag featuring quilted black lambskin leather, gold-tone metal hardware, and the unmistakable double CC turn-lock closure.",
+                details: ["Dimensions: 15.5 × 25.5 × 6.5 cm", "Material: 100% Grained Calfskin", "Includes Certificate of Authenticity & Original Box"]
+            },
+            {
+                id: 2,
+                name: "Rolex Submariner Date 41mm - Oystersteel",
+                brand: "Rolex",
+                category: "Watches",
+                price: 14500,
+                rating: 4.9,
+                image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1000&auto=format&fit=crop",
+                description: "The benchmark among diver watches. Features a black dial, unidirectional rotatable Cerachrom bezel, and solid Oystersteel bracelet.",
+                details: ["Reference: 126610LN", "Calibre: 3235, Manufacture Rolex", "Power Reserve: Approx 70 hours"]
+            },
+            {
+                id: 3,
+                name: "Hermès Birkin 30 - Gold Togo Leather",
+                brand: "Hermès",
+                category: "Bags",
+                price: 24800,
+                rating: 5.0,
+                image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=1000&auto=format&fit=crop",
+                description: "The ultimate emblem of prestige. Crafted in timeless Gold Togo leather with polished gold-plated hardware and signature clochette.",
+                details: ["Color: Gold (06)", "Hardware: Gold Plated", "Condition: Pristine / Unused Store Fresh"]
+            },
+            {
+                id: 4,
+                name: "Gucci GG Monogram Silk Trench Coat",
+                brand: "Gucci",
+                category: "Apparel",
+                price: 3600,
+                rating: 4.8,
+                image: "https://images.unsplash.com/photo-1539533018447-63fcce2678e3?q=80&w=1000&auto=format&fit=crop",
+                description: "Double-breasted trench coat tailored in silk-blend fabric adorned with the classic GG monogram pattern and Horn buttons.",
+                details: ["Made in Italy", "Composition: 68% Silk, 32% Cotton", "Dry Clean Only"]
+            },
+            {
+                id: 5,
+                name: "Rolex Daytona Cosmograph - 18ct Everose Gold",
+                brand: "Rolex",
+                category: "Watches",
+                price: 42000,
+                rating: 5.0,
+                image: "https://images.unsplash.com/photo-1547996160-81dfa63595aa?q=80&w=1000&auto=format&fit=crop",
+                description: "Designed to meet the demands of professional racing drivers. Features a sundust dial and Oysterflex bracelet in pure Everose Gold.",
+                details: ["Reference: 116515LN", "Bezel: Black Monobloc Cerachrom", "Water Resistance: 100 metres"]
+            },
+            {
+                id: 6,
+                name: "Prada Cleo Brushed Leather Shoulder Bag",
+                brand: "Prada",
+                category: "Bags",
+                price: 2950,
+                rating: 4.7,
+                image: "https://images.unsplash.com/photo-1591561954557-26941169b49e?q=80&w=1000&auto=format&fit=crop",
+                description: "Reinterpreting an iconic 1990s design. Sleek curved lines emphasized by the distinctive sloping shape in premium brushed leather.",
+                details: ["Enamelled metal triangle logo", "Leather handle for shoulder carry", "Nappa leather lining"]
+            },
+            {
+                id: 7,
+                name: "Hermès Constance 24 - Epsom Leather",
+                brand: "Hermès",
+                category: "Bags",
+                price: 13900,
+                rating: 4.9,
+                image: "https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?q=80&w=1000&auto=format&fit=crop",
+                description: "Designed in 1969, featuring the structural oversized 'H' clasp on structured black Epsom leather.",
+                details: ["Hardware: Permabrass", "Adjustable shoulder strap", "Dual internal compartments"]
+            },
+            {
+                id: 8,
+                name: "Gucci Horsebit 1955 Small Shoulder Bag",
+                brand: "Gucci",
+                category: "Bags",
+                price: 3200,
+                rating: 4.8,
+                image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?q=80&w=1000&auto=format&fit=crop",
+                description: "Unveiled for Cruise 2020, recreated from an archival design with the iconic double ring and bar Equestrian detail.",
+                details: ["GG Supreme canvas with brown leather trim", "Gold-toned hardware", "Microfiber lining with suede-like finish"]
+            }
+        ];
+
+        // STATE MANAGEMENT
+        let cart = [];
+        let activeBrand = 'all';
+        let searchQuery = '';
+        let sortBy = 'featured';
+
+        // DOM ELEMENTS
+        const productGrid = document.getElementById('product-grid');
+        const emptyState = document.getElementById('empty-state');
+        const searchInput = document.getElementById('search-input');
+        const mobileSearchInput = document.getElementById('mobile-search-input');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const sortSelect = document.getElementById('sort-select');
+        const cartBtn = document.getElementById('cart-btn');
+        const cartBadge = document.getElementById('cart-badge');
+        const cartDrawer = document.getElementById('cart-drawer');
+        const cartBackdrop = document.getElementById('cart-backdrop');
+        const cartPanel = document.getElementById('cart-panel');
+        const closeCart = document.getElementById('close-cart');
+        const cartItemsContainer = document.getElementById('cart-items');
+        const cartSubtotalEl = document.getElementById('cart-subtotal');
+        const cartTotalEl = document.getElementById('cart-total');
+        const checkoutBtn = document.getElementById('checkout-btn');
+        const productModal = document.getElementById('product-modal');
+        const closeModal = document.getElementById('close-modal');
+        const modalContent = document.getElementById('modal-content');
+
+        // FORMAT CURRENCY
+        function formatPrice(amount) {
+            return '$' + amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+        // RENDER PRODUCT CARDS
+        function renderProducts() {
+            let filtered = products.filter(product => {
+                const matchesBrand = activeBrand === 'all' || product.brand.toLowerCase() === activeBrand.toLowerCase();
+                const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                                      product.brand.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                                      product.category.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchesBrand && matchesSearch;
+            });
+
+            // Sorting
+            if (sortBy === 'price-low') {
+                filtered.sort((a, b) => a.price - b.price);
+            } else if (sortBy === 'price-high') {
+                filtered.sort((a, b) => b.price - a.price);
+            } else if (sortBy === 'name') {
+                filtered.sort((a, b) => a.name.localeCompare(b.name));
+            }
+
+            if (filtered.length === 0) {
+                productGrid.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+            productGrid.innerHTML = filtered.map(product => `
+                <div class="card-hover bg-dark-800 rounded-lg border border-white/10 overflow-hidden flex flex-col group relative">
+                    <!-- Image Container -->
+                    <div class="relative h-72 w-full overflow-hidden bg-dark-900 cursor-pointer" onclick="openModal(${product.id})">
+                        <img src="${product.image}" 
+                             alt="${product.name}" 
+                             class="w-full h-full object-cover object-center group-hover:scale-108 transition-transform duration-700 filter brightness-95 group-hover:brightness-100"
+                             onerror="this.src='https://placehold.co/600x600/181818/D4AF37?text=${encodeURIComponent(product.brand)}'">
+                        <div class="absolute top-3 left-3 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded text-[10px] font-semibold text-gold-500 uppercase tracking-widest">
+                            ${product.brand}
+                        </div>
+                        <button onclick="event.stopPropagation(); openModal(${product.id})" class="absolute bottom-3 right-3 bg-dark-900/80 hover:bg-gold-500 hover:text-black text-white p-2.5 rounded-full transition-colors backdrop-blur-md" title="Quick View">
+                            <i class="fa-regular fa-eye text-xs"></i>
+                        </button>
+                    </div>
+
+                    <!-- Details -->
+                    <div class="p-5 flex flex-col flex-grow justify-between">
+                        <div>
+                            <div class="flex items-center space-x-1 text-gold-500 text-[10px] mb-1">
+                                ${'<i class="fa-solid fa-star"></i>'.repeat(Math.floor(product.rating))}
+                                <span class="text-gray-400 ml-1">(${product.rating})</span>
+                            </div>
+                            <h3 onclick="openModal(${product.id})" class="font-serif text-sm font-semibold text-white group-hover:text-gold-300 transition-colors cursor-pointer line-clamp-1">
+                                ${product.name}
+                            </h3>
+                            <p class="text-xs text-gray-400 mt-1 line-clamp-2">${product.description}</p>
+                        </div>
+
+                        <div class="mt-4 pt-4 border-t border-white/5 flex items-center justify-between">
+                            <span class="font-serif font-bold text-gold-500 text-base">${formatPrice(product.price)}</span>
+                            <button onclick="addToCart(${product.id})" class="bg-white/5 hover:bg-gold-500 hover:text-black text-white text-xs font-semibold px-3 py-2 rounded transition-all duration-300 flex items-center space-x-1.5 border border-white/10">
+                                <i class="fa-solid fa-plus text-[10px]"></i>
+                                <span>Bag</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // MODAL HANDLERS
+        function openModal(id) {
+            const product = products.find(p => p.id === id);
+            if (!product) return;
+
+            modalContent.innerHTML = `
+                <div class="h-72 md:h-full bg-dark-900 relative">
+                    <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover">
+                    <div class="absolute top-4 left-4 bg-gold-500 text-black text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded">
+                        Authentic ${product.brand}
+                    </div>
+                </div>
+                <div class="p-6 md:p-8 flex flex-col justify-between">
+                    <div>
+                        <span class="text-gold-500 text-xs font-semibold tracking-widest uppercase">${product.category}</span>
+                        <h2 class="font-serif text-2xl font-bold text-white mt-1">${product.name}</h2>
+                        <p class="font-serif text-xl text-gold-500 font-bold mt-2">${formatPrice(product.price)}</p>
+                        
+                        <p class="text-xs text-gray-300 mt-4 leading-relaxed">${product.description}</p>
+
+                        <div class="mt-6 border-t border-white/10 pt-4">
+                            <h4 class="text-xs font-semibold uppercase text-gray-400 tracking-wider mb-2">Specifications</h4>
+                            <ul class="text-xs text-gray-400 space-y-1 list-disc list-inside">
+                                ${product.details.map(detail => `<li>${detail}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-4 border-t border-white/10 flex items-center gap-3">
+                        <button onclick="addToCart(${product.id}); closeModalHandler();" class="flex-1 bg-gold-500 hover:bg-gold-600 text-black font-semibold text-xs tracking-widest uppercase py-3.5 rounded transition-colors flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                            <span>Add To Shopping Bag</span>
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            productModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModalHandler() {
+            productModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // CART LOGIC
+        function addToCart(productId) {
+            const existing = cart.find(item => item.id === productId);
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                const product = products.find(p => p.id === productId);
+                cart.push({ ...product, quantity: 1 });
+            }
+            updateCartUI();
+            showToast('Item added to your shopping bag');
+            openCartDrawer();
+        }
+
+        function updateQuantity(productId, delta) {
+            const item = cart.find(i => i.id === productId);
+            if (!item) return;
+
+            item.quantity += delta;
+            if (item.quantity <= 0) {
+                cart = cart.filter(i => i.id !== productId);
+            }
+            updateCartUI();
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(i => i.id !== productId);
+            updateCartUI();
+            showToast('Item removed');
+        }
+
+        function updateCartUI() {
+            // Update Badge
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartBadge.textContent = totalItems;
+            if (totalItems > 0) {
+                cartBadge.classList.remove('opacity-0');
+            } else {
+                cartBadge.classList.add('opacity-0');
+            }
+
+            // Update Drawer List
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = `
+                    <div class="text-center py-12 text-gray-500">
+                        <i class="fa-solid fa-bag-shopping text-3xl mb-3 text-gray-600"></i>
+                        <p class="text-xs uppercase tracking-wider">Your shopping bag is empty</p>
+                    </div>
+                `;
+            } else {
+                cartItemsContainer.innerHTML = cart.map(item => `
+                    <div class="flex items-center space-x-4 bg-dark-900/60 p-3 rounded border border-white/5">
+                        <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded bg-dark-900">
+                        <div class="flex-grow min-w-0">
+                            <h4 class="text-xs font-semibold text-white truncate">${item.name}</h4>
+                            <p class="text-[10px] text-gold-500 uppercase font-semibold mt-0.5">${item.brand}</p>
+                            <p class="text-xs font-serif text-gray-300 mt-1">${formatPrice(item.price)}</p>
+                        </div>
+                        <div class="flex flex-col items-end space-y-2">
+                            <button onclick="removeFromCart(${item.id})" class="text-gray-500 hover:text-red-400 text-xs">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                            <div class="flex items-center space-x-2 bg-dark-800 px-2 py-1 rounded border border-white/10 text-xs">
+                                <button onclick="updateQuantity(${item.id}, -1)" class="text-gray-400 hover:text-white">-</button>
+                                <span class="text-white font-medium px-1">${item.quantity}</span>
+                                <button onclick="updateQuantity(${item.id}, 1)" class="text-gray-400 hover:text-white">+</button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // Update Totals
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            cartSubtotalEl.textContent = formatPrice(subtotal);
+            cartTotalEl.textContent = formatPrice(subtotal);
+        }
+
+        function openCartDrawer() {
+            cartBackdrop.classList.remove('hidden');
+            setTimeout(() => {
+                cartBackdrop.classList.remove('opacity-0');
+                cartPanel.classList.remove('translate-x-full');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCartDrawer() {
+            cartPanel.classList.add('translate-x-full');
+            cartBackdrop.classList.add('opacity-0');
+            setTimeout(() => {
+                cartBackdrop.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }, 300);
+        }
+
+        // TOAST NOTIFICATIONS
+        function showToast(message) {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = 'bg-gold-500 text-black font-semibold text-xs px-4 py-3 rounded shadow-xl flex items-center space-x-2 transform translate-y-4 opacity-0 transition-all duration-300 pointer-events-auto';
+            toast.innerHTML = `<i class="fa-solid fa-circle-check"></i><span>${message}</span>`;
+            
+            container.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.classList.remove('translate-y-4', 'opacity-0');
+            }, 10);
+
+            setTimeout(() => {
+                toast.classList.add('translate-y-4', 'opacity-0');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // EVENT LISTENERS
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-gold-500', 'text-black', 'border-gold-500');
+                    b.classList.add('border-white/10', 'text-gray-300');
+                });
+                btn.classList.add('bg-gold-500', 'text-black', 'border-gold-500');
+                btn.classList.remove('border-white/10', 'text-gray-300');
+
+                activeBrand = btn.dataset.brand;
+                renderProducts();
+            });
+        });
+
+        const handleSearch = (e) => {
+            searchQuery = e.target.value;
+            renderProducts();
+        };
+
+        searchInput.addEventListener('input', handleSearch);
+        mobileSearchInput.addEventListener('input', handleSearch);
+
+        sortSelect.addEventListener('change', (e) => {
+            sortBy = e.target.value;
+            renderProducts();
+        });
+
+        cartBtn.addEventListener('click', openCartDrawer);
+        closeCart.addEventListener('click', closeCartDrawer);
+        cartBackdrop.addEventListener('click', closeCartDrawer);
+        closeModal.addEventListener('click', closeModalHandler);
+
+        checkoutBtn.addEventListener('click', () => {
+            if (cart.length === 0) {
+                showToast('Your bag is empty.');
+                return;
+            }
+            alert('Redirecting to 256-bit Secure Private Checkout...');
+            cart = [];
+            updateCartUI();
+            closeCartDrawer();
+        });
+
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModalHandler();
+                closeCartDrawer();
+            }
+        });
+
+        // INITIAL RENDER
+        renderProducts();
+    </script>
+</body>
+</html>
